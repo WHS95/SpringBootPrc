@@ -1,17 +1,18 @@
 package com.prcproject.learnspringframwork;
 
-import com.prcproject.learnspringframwork.MarioGame.ContrabaseGame;
 import com.prcproject.learnspringframwork.MarioGame.MarioGame;
 import com.prcproject.learnspringframwork.game.GameRunner;
-import org.springframework.boot.SpringApplication;
 
-public class AppGamingBasicJava {
+public class App01GamingBasicJava {
 
     public static void main(String[] args) {
-
+        //var game = new ContrabaseGame();
         var game = new MarioGame();
-//        var game = new ContrabaseGame();
+        //object Creation
+
         var gameRunner =new GameRunner(game);
+        //Object Creation + Wiring of Dependncies
+        //Game is dependency of GameRunner
         gameRunner.run();
     }
 }

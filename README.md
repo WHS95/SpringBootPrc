@@ -8,6 +8,7 @@ Java Bean
 2) Allow access to their property using getter and setter;
 3) Implement java.io.Serializable
 
+
 Pojo
 1) No constraints
 2) Any Java Object is a Pojo

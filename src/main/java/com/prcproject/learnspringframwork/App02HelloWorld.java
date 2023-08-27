@@ -1,8 +1,5 @@
 package com.prcproject.learnspringframwork;
 
-import com.prcproject.learnspringframwork.MarioGame.MarioGame;
-import com.prcproject.learnspringframwork.game.GameRunner;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App02HelloWorld {
@@ -10,6 +7,9 @@ public class App02HelloWorld {
     public static void main(String[] args) {
         var context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
         System.out.println(context.getBean("name"));
+        System.out.println(context.getBean("age"));
+        System.out.println(context.getBean("person"));
+        System.out.println(context.getBean("address"));
     }
 
 }

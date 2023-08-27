@@ -1,13 +1,12 @@
-# SpringBootPrc
+# 🙋🏻‍♂️SpringBootPrc Study log
 
 
-Spring Java Bean VS Pojo VS Spring Bean
+## 📕Spring Java Bean VS Pojo VS Spring Bean
 
 Java Bean
 1) Have public  default(no argument) constructros;
 2) Allow access to their property using getter and setter;
 3) Implement java.io.Serializable
-
 
 Pojo
 1) No constraints

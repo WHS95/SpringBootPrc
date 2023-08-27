@@ -14,3 +14,10 @@ Pojo
 
 Spring Bean
 1) Spring use IOC container(Bean Factory or Applcaiton Context) to manage these Object;
+
+
+
+## 📕How to matching Bean(in Multi Case)
+
+1) @Primary
+2) @Qualifier

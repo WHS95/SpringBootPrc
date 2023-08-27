@@ -1,8 +1,10 @@
 package com.prcproject.learnspringframwork;
 
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 
 record Person(String name, int age, Address address) {
@@ -35,6 +37,7 @@ public class HelloWorldConfiguration {
     public Person person2MethodCall() {
         return new Person(name(), age(), address());
     }
+
     ;
 
 
@@ -42,18 +45,40 @@ public class HelloWorldConfiguration {
     public Person person3Parmerters(String name, int age, Address address3) {
         return new Person(name, age, address3);
     }
+
     ;
 
+    @Bean
+    @Primary
+    public Person person4Parmerters(String name, int age, Address address32) {
+        return new Person(name, age, address32);
+    }
+
+    ;
+
+    @Bean
+    public Person person5Qualify(String name, int age, @Qualifier("address344") Address address) {
+        return new Person(name, age, address);
+    }
+
+    ;
 
     @Bean(name = "address2")
+    @Primary
     public Address address() {
-        return new Address("Baker Street", "Lond");
+        return new Address("primary1", "primary2");
     }
 
 
+    @Bean
+    @Qualifier("address344")
+    public Address address3() {
+        return new Address("Qualify1", "Qualify2");
+    }
 
-    @Bean(name = "address3")
-    public Address addres3() {
+
+    @Bean
+    public Address address32() {
         return new Address("Street", "place");
     }
 }

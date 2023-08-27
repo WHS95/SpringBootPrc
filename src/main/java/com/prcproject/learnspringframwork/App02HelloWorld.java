@@ -2,17 +2,25 @@ package com.prcproject.learnspringframwork;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class App02HelloWorld {
 
     public static void main(String[] args) {
         var context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
-        System.out.println(context.getBean("name"));
-        System.out.println(context.getBean("age"));
-        System.out.println(context.getBean("person"));
-        System.out.println(context.getBean("person2MethodCall"));
-        System.out.println(context.getBean("person3Parmerters"));
-        System.out.println(context.getBean("address2"));
+//        System.out.println(context.getBean("name"));
+//        System.out.println(context.getBean("age"));
+//        System.out.println(context.getBean("person"));
+//        System.out.println(context.getBean("person2MethodCall"));
 //        System.out.println(context.getBean(Address.class));
+        System.out.println(context.getBean("person4Parmerters"));
+        System.out.println(context.getBean("person3Parmerters"));
+        System.out.println(context.getBean("person5Qualify"));
+//        System.out.println(context.getBean(Address.class));
+
+        //System.out.println
+        Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
 
     }
 

@@ -1,8 +1,7 @@
-package com.prcproject.learnspringframwork;
+package com.prcproject.learnspringframwork.HelloWorld;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class App02HelloWorld {

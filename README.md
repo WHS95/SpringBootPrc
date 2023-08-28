@@ -21,3 +21,10 @@ Spring Bean
 
 1) @Primary
 2) @Qualifier
+
+
+## 📕Spring Dependency injection Types
+
+1) Constructor-based(생성자 주입방식)
+2) Setter-based(수정자 주입방식)
+3) Field (필드주입방식)

@@ -1,4 +1,4 @@
-package com.prcproject.learnspringframwork;
+package com.prcproject.learnspringframwork.HelloWorld;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;

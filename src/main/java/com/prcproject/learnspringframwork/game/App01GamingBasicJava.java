@@ -1,7 +1,6 @@
-package com.prcproject.learnspringframwork;
+package com.prcproject.learnspringframwork.game;
 
-import com.prcproject.learnspringframwork.MarioGame.MarioGame;
-import com.prcproject.learnspringframwork.game.GameRunner;
+import com.prcproject.learnspringframwork.game.MarioGame.MarioGame;
 
 public class App01GamingBasicJava {
 

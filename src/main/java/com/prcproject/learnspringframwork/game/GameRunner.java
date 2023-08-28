@@ -1,9 +1,5 @@
 package com.prcproject.learnspringframwork.game;
 
-import com.prcproject.learnspringframwork.MarioGame.MarioGame;
-
-import java.sql.SQLOutput;
-
 public class GameRunner {
     GamingConsole game;
     public GameRunner(GamingConsole game) {

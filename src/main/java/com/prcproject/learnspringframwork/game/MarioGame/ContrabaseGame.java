@@ -1,4 +1,4 @@
-package com.prcproject.learnspringframwork.MarioGame;
+package com.prcproject.learnspringframwork.game.MarioGame;
 
 import com.prcproject.learnspringframwork.game.GamingConsole;
 

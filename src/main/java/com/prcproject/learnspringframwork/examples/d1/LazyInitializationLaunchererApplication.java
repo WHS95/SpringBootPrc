@@ -1,4 +1,4 @@
-package com.prcproject.learnspringframwork.examples.d1.a1;
+package com.prcproject.learnspringframwork.examples.d1;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -28,7 +28,6 @@ class ClassB{
         System.out.println("do Some thing!!");
     }
 }
-
 
     @Configuration
     @ComponentScan

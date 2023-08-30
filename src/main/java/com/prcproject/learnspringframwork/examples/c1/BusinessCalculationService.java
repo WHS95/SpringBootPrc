@@ -12,7 +12,6 @@ public class BusinessCalculationService {
     private DataService dataService;
 
     public BusinessCalculationService(DataService dataService) {
-        super();
         this.dataService = dataService;
     }
 

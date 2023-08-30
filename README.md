@@ -73,3 +73,15 @@ Bean은 모든 세션과 요청에서 공유됩니다.
 스프링 5.0에서 도입되었습니다.
 요청 범위와 유사하지만 WebSocket 기반 애플리케이션을 위해 특별히 설계되었습니다.
 각 WebSocket 세션마다 Bean의 새 인스턴스가 생성됩니다.
+
+
+## 📕Bean 생명주기 다루기
+
+1) @PostConstruct   
+    Bean intialize 할 때 작동할 메소드에 적용하면 작동됢 
+  
+2) @PreDestroy  
+   Bean Destroy 할 때 작동할 메소드에 적용하면 작동됢
+
+* 참고 링크
+* https://ttl-blog.tistory.com/99

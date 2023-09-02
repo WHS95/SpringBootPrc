@@ -114,5 +114,26 @@ Spring Bean
     1) 클래스가 DAO(데이터 액세스 개체) 또는 저장소 구성 요소임을 나타내는 데 사용되는 어노테이션
 
 
-        요약: @Configuration+ @Bean 조합으로 Bean을 등록해라, 직접개발한 클래스를 Bean으로 등록할때는 @Component를 써라, 
-        왠만하면 목적에 맞게 @Controller, @Service, @Repository를 사용해서 해당 클래스의 역할을 구체화 해라
+     요약: @Configuration+ @Bean 조합으로 Bean을 등록해라, 직접개발한 클래스를 Bean으로 등록할때는 @Component를 써라, 
+     왠만하면 목적에 맞게 @Controller, @Service, @Repository를 사용해서 해당 클래스의 역할을 구체화 해라
+
+## 📕Spring Actuactor 정리(Spring boot monitoring)
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-actuator</artifactId>
+     </dependency>
+
+
+      application.properties 세팅 명령
+      -management.endpoints.web.exposure.include=*(모든 기능 사용)
+      -management.endpoints.web.exposure.include=health,metrics(적은 기능만 사용)
+
+1) 접속방법
+   http://localhost:8080/actuator
+
+2) 확인해볼만 한것들
+   1) 요청 받은 갯수, 요청 소요시간(평균, 최대)   http://localhost:8080/actuator/metrics/http.server.requests
+   2) healthCheck  http://localhost:8080/actuator/health
+   3) scheduleCheck  http://localhost:8080/actuator/scheduledtasks
+

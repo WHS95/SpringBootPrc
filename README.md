@@ -42,6 +42,17 @@ Spring Bean
 다만, 컴파일할때 initialize를 하지 않다보니 에러가 런타임시 발생하여 서비스 실행에 문제점을 야기 할수있어 권장되진않는다.
 
 ## 📕Bean Scope
+    스프링은 기본적으로 모든 bean을 singleton으로 생성하여 관리한다.
+    구체적으로는 애플리케이션 구동 시 JVM 안에서 스프링이 bean마다 하나의 객체를 생성하는 것을 의미한다.
+    그래서 우리는 스프링을 통해서 bean을 제공받으면 언제나 주입받은 bean은 동일한 객체라는 가정하에서 개발을 한다
+
+    https://gmlwjd9405.github.io/2018/11/10/spring-beans.html
+
+    @Component @Scope(value="singleton")  
+    @Component @Scope(value="prototype")  
+    @Component @Scope(value="request")  
+    @Component @Scope(value="session")  
+    @Component @Scope(value="application")  
 
 1) Singleton Scope
    Spring의 기본 범위.
@@ -85,7 +96,7 @@ Spring Bean
 * 참고 링크
 * https://ttl-blog.tistory.com/99
 
-## Spring Anotation 정리
+## 📕Spring Anotation 정리
 
 1) @Configuration
     1) 설정파일을 만들기위한 어노테이션,

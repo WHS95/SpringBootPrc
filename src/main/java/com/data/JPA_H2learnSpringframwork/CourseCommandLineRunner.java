@@ -2,6 +2,7 @@ package com.data.JPA_H2learnSpringframwork;
 
 import com.data.JPA_H2learnSpringframwork.course.Course;
 import com.data.JPA_H2learnSpringframwork.course.jdbc.CourseJdbcRepository;
+import com.data.JPA_H2learnSpringframwork.course.jpa.CourseJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -9,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CourseCommandLineRunner implements CommandLineRunner{
 
-	@Autowired
-	private CourseJdbcRepository repository;
-
 //	@Autowired
-//	private CourseJpaRepository repository;
+//	private CourseJdbcRepository repository;
+
+	@Autowired
+	private CourseJpaRepository repository;
 
 //    @Autowired
 //    private CourseSpringDataJpaRepository repository;

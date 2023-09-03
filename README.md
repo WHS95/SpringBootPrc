@@ -137,3 +137,21 @@ Spring Bean
    2) healthCheck  http://localhost:8080/actuator/health
    3) scheduleCheck  http://localhost:8080/actuator/scheduledtasks
 
+
+## 📕Spring H2 정리
+      	<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+   
+      HikariPool-1 - Starting...
+      HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+      HikariPool-1 - Start completed.
+
+1) h2 memory DB url 고정하는법  
+
+         application.property에 아래 내용 작성
+         spring.datasource.url=jdbc:h2:mem:testdb
+
+

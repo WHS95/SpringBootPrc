@@ -4,7 +4,6 @@ package com.data.JPA_H2learnSpringframwork.course.jpa;
 import com.data.JPA_H2learnSpringframwork.course.Course;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

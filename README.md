@@ -154,4 +154,7 @@ Spring Bean
          application.property에 아래 내용 작성
          spring.datasource.url=jdbc:h2:mem:testdb
 
+## 📕Spring Data JPA
+
+      JPA는 API 이다.
 

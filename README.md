@@ -158,3 +158,15 @@ Spring Bean
 
       JPA는 API 이다.
 
+## 📕JSP (JavaServer Pages )
+localhost:8080/login
+
+B1: Identifies correct Controller method /login => LoginController.gotoLoginPage
+
+B2: Executes Controller method => Puts data into model => Returns view name => login
+
+B3: Identifies correct View /WEB-INF/jsp/login.jsp
+
+B4: Executes view
+
+

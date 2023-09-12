@@ -5,15 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
 @SessionAttributes("name")
 public class TodoController {
 
-    private  TodoService todoService;
+    private TodoService todoService;
 
     public TodoController(TodoService todoService) {
 
@@ -24,7 +26,20 @@ public class TodoController {
     public String getTodoList(ModelMap model) {
 
         List<Todo> todos = todoService.findByUser("whs");
-        model.put("todos",todos);
+        model.put("todos", todos);
         return "todoList";
     }
+
+
+    @RequestMapping(value = "add-todo", method = RequestMethod.GET)
+    public String showNewTodoPage() {
+        return "todo";
+    }
+
+    @RequestMapping(value = "add-todo", method = RequestMethod.POST)
+    public String addNewTodo(@RequestParam String description, ModelMap model) {
+        todoService.add((String) model.get("name"), description, LocalDate.now().plusDays(1), false);
+        return "redirect:to-do-list";//redirect 사용시에는 jsp파일명이 아니라 controller value값을 넣어주어야 한다.
+    }
+
 }

@@ -170,3 +170,45 @@ B3: Identifies correct View /WEB-INF/jsp/login.jsp
 B4: Executes view
 
 
+## 📕객체 검증 (feat.@Valid) 
+
+      javax.validation.constraints
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-validation</artifactId>
+          <version>3.1.2</version>
+      </dependency>
+
+
+예시코드
+@RestController
+@Slf4j
+public class TestController {
+
+    // Controller===================
+    @PostMapping("/user")
+    public ResponseEntity<String> savePost(final @Valid @RequestBody UserDto userDto) {
+        log.info(userDto.toString());
+        return ResponseEntity.ok().body("postDto 객체 검증 성공");
+         }
+    }
+
+    // Dto==================
+    @ToString
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public class UserDto {
+    
+       @NotNull
+       private String name;
+    
+       @Email
+       private String email;
+    }
+
+   참고 블로그
+   https://jyami.tistory.com/55#google_vignette
+

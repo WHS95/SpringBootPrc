@@ -42,4 +42,11 @@ public class TodoController {
         return "redirect:to-do-list";//redirect 사용시에는 jsp파일명이 아니라 controller value값을 넣어주어야 한다.
     }
 
+    @RequestMapping(value = "delete-todo", method = RequestMethod.GET)
+    public String deleteTodo(@RequestParam int id) {
+        todoService.deleteById(id);
+        return "redirect:to-do-list";
+    }
+
+
 }

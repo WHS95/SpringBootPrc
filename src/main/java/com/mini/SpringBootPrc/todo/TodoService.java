@@ -26,7 +26,7 @@ public class TodoService {
         return todos;
     }
 
-    public void add(String username, String description, LocalDate targetDate, boolean done) {
+    public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
         Todo todo = new Todo(++todosCount, username, description, targetDate, done);
         todos.add(todo);
     }
@@ -36,4 +36,9 @@ public class TodoService {
         todos.removeIf(predicate);
     }
 
+    public Todo findById(int id) {
+        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
+        Todo todo = todos.stream().filter(predicate).findFirst().get();
+        return todo;
+    }
 }

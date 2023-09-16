@@ -1,8 +1,10 @@
 package com.mini.SpringBootPrc.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,22 +33,31 @@ public class TodoController {
     }
 
 
-    @RequestMapping(value = "add-todo", method = RequestMethod.GET)
-    public String showNewTodoPage() {
-        return "todo";
+    @RequestMapping(value="add-todo", method = RequestMethod.POST)
+    public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+
+        if(result.hasErrors()) {
+            return "todo";
+        }
+
+        String username = (String)model.get("name");
+        todoService.addTodo(username, todo.getDescription(),
+                LocalDate.now().plusYears(1), false);
+        return "redirect:list-todos";
     }
 
-    @RequestMapping(value = "add-todo", method = RequestMethod.POST)
-    public String addNewTodo(@RequestParam String description, ModelMap model) {
-        todoService.add((String) model.get("name"), description, LocalDate.now().plusDays(1), false);
-        return "redirect:to-do-list";//redirect 사용시에는 jsp파일명이 아니라 controller value값을 넣어주어야 한다.
-    }
-
-    @RequestMapping(value = "delete-todo", method = RequestMethod.GET)
+    @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
         todoService.deleteById(id);
-        return "redirect:to-do-list";
+        return "redirect:list-todos";
+
     }
 
+    @RequestMapping("update-todo")
+    public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
+        Todo todo = todoService.findById(id);
+        model.addAttribute("todo", todo);
+        return "todo";
+    }
 
 }

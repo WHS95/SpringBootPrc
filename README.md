@@ -212,3 +212,26 @@ public class TestController {
    참고 블로그
    https://jyami.tistory.com/55#google_vignette
 
+## 📕bootStrap datepicker 사용법
+
+1) pom.xml
+
+     <!--Boot Strap 달력을 쓰기위해서-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap-datepicker</artifactId>
+			<version>1.9.0</version>
+		</dependency>
+
+2) .jsp 파일에 경로 붙여넣기
+
+         <link href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" >
+
+   
+   
+         <script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>ㅋ
+                      <script type="text/javascript">
+                          $('#targetDate').datepicker({
+                              format: 'yyyy-mm-dd'
+                          });
+                      </script>

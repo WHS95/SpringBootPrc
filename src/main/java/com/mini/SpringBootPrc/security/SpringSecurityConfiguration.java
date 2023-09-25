@@ -19,18 +19,28 @@ public class SpringSecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager createUserDetailManager()// 사용자 이름 설정
     {
+
+
+        // UserDetails 객체 생성 (사용자 정보 설정)
+        UserDetails userDetail1 = createNewUser("whs", "1111");
+        UserDetails userDetail2 = createNewUser("alex", "222");
+
+        //UserDetails 객체를 포함하는 InMemoryUserDetailsManager를 반환
+        return new InMemoryUserDetailsManager(userDetail1, userDetail2);
+    }
+
+
+    private UserDetails createNewUser(String username, String password) {
         // 비밀번호 인코더 함수를 정의하여 사용할 준비
         Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
 
-        // UserDetails 객체 생성 (사용자 정보 설정)
         UserDetails userDetail = User.builder()
                 .passwordEncoder(passwordEncoder)// 비밀번호 인코더 설정
-                .username("whs").password("1111")// 비밀번호 설정
+                .username(username).password(password)// 비밀번호 설정
                 .roles("USER", "ADMIN")// 사용자 역할 설정
                 .build();
 
-        //UserDetails 객체를 포함하는 InMemoryUserDetailsManager를 반환
-        return new InMemoryUserDetailsManager(userDetail);
+        return userDetail;
     }
 
     // 비밀번호 인코더를 빈으로 등록

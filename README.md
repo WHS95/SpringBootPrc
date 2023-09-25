@@ -235,3 +235,33 @@ public class TestController {
                               format: 'yyyy-mm-dd'
                           });
                       </script>
+
+
+## 📕Spring Security
+
+1)pom.xml
+
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+2)Configuration
+
+      private UserDetails createNewUser(String username, String password) {
+
+      Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
+      UserDetails userDetail = User.builder()
+                .passwordEncoder(passwordEncoder)// 비밀번호 인코더 설정
+                .username(username).password(password)// 비밀번호 설정
+                .roles("USER", "ADMIN")// 사용자 역할 설정
+                .build();
+
+        return userDetail;
+      }
+
+       // 비밀번호 인코더를 빈으로 등록
+       @Bean
+       public PasswordEncoder passwordEncoder() {
+           return new BCryptPasswordEncoder();
+       }

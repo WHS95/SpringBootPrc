@@ -17,10 +17,7 @@ public class SpringSecurityConfiguration {
 
     // 사용자 상세 정보를 메모리에서 관리하기 위한 빈을 생성
     @Bean
-    public InMemoryUserDetailsManager createUserDetailManager()// 사용자 이름 설정
-    {
-
-
+    public InMemoryUserDetailsManager createUserDetailManager() {
         // UserDetails 객체 생성 (사용자 정보 설정)
         UserDetails userDetail1 = createNewUser("whs", "1111");
         UserDetails userDetail2 = createNewUser("alex", "222");

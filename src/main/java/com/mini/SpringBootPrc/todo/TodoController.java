@@ -2,6 +2,8 @@ package com.mini.SpringBootPrc.todo;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -20,14 +22,14 @@ public class TodoController {
     private TodoService todoService;
 
     public TodoController(TodoService todoService) {
-
         this.todoService = todoService;
     }
 
+
     @RequestMapping(value = "to-do-list", method = RequestMethod.GET)
     public String getTodoList(ModelMap model) {
-
-        List<Todo> todos = todoService.findByUser("whs");
+        String username = getLoggedInUsername(model);
+        List<Todo> todos = todoService.findByUser(username);
         model.put("todos", todos);
         return "todoList";
     }
@@ -35,7 +37,7 @@ public class TodoController {
 
     @RequestMapping(value="add-todo", method = RequestMethod.GET)
     public String showNewTodoPage(ModelMap model) {
-        String username = (String)model.get("name");
+        String username = getLoggedInUsername(model);
         Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
         model.put("todo", todo);
         return "todo";
@@ -48,12 +50,14 @@ public class TodoController {
             return "todo";
         }
 
-        String username = (String)model.get("name");
+        String username = getLoggedInUsername(model);
         todoService.addTodo(username, todo.getDescription(),
                 todo.getTargetDate(), false);
         return "redirect:to-do-list";
     }
 
+
+    //@RequestMapping(value="add-todo", method = RequestMethod.POST) 어떤 요청으로 받을지 설정을 하지 않으면 모든것에 대해 받는다.
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
         todoService.deleteById(id);
@@ -76,11 +80,19 @@ public class TodoController {
             return "todo";
         }
 
-        String username = (String)model.get("name");
+        String username = getLoggedInUsername(model);
         todo.setUsername(username);
         todoService.updateTodo(todo);
 
         return "redirect:to-do-list";
     }
+
+
+    private String getLoggedInUsername(ModelMap model) {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
+    }
+
 
 }

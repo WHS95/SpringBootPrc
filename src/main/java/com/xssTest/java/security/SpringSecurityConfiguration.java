@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import java.util.function.Function;
@@ -63,25 +65,28 @@ public class SpringSecurityConfiguration {
         //Spring Security의 기본 로그인 페이지를 사용
         http.formLogin(withDefaults());
         //CSRF(Cross-Site Request Forgery) 공격을 방지하는 Spring Security의 기본 기능을 비활성화
-//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-        http.csrf().disable();
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//        http.csrf().disable();
         //X-Frame-Options 헤더를 비활성화하는 부분
         http.headers().frameOptions().disable();
+        //Cookie httpOnly 속성으로 설정
+        http.sessionManagement()
+                .sessionAuthenticationStrategy(sessionAuthenticationStrategy());
+        http.headers()
+//                .xssProtection()
+//                .and()
+                .contentSecurityPolicy("script-src 'self'");
         return http.build();
     }
 
-    //value="mgHT211U3RIkpWA7McOZJO4HNL_uRaGd9y2eyAAewzcJMXw7-TLh6z5jviUJwVMMA-6tHI8_GYeNfJOwwhmnqTAmpwY_Ah4C"
+    @Bean
+    public SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+        return new SessionFixationProtectionStrategy();
+    }
 
 
 
-//        @Bean
-//        protected void configure(HttpSecurity http) throws Exception {
-//            http
-//                    .headers()
-//                    .xssProtection()
-//                    .and()
-//                    .contentSecurityPolicy("script-src 'self'");
-//        }
+
 
 
 }

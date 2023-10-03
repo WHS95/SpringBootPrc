@@ -30,17 +30,17 @@
 
 <body>
 <h1>Stored XSS 공격</h1>
-
 <div class="post">
     <h3 class="post__title">
-        <c:out value="${post.title}"/>
-        <%-- ${post.title} --%>
+        ${post.title}
     </h3>
     <div class="post__content">
-        <pre><c:out value="${post.content}"/></pre>
-        <%-- ${post.content} --%>
+        ${post.content}
     </div>
 </div>
+
+
+
 
 </body>
 </html>

@@ -33,7 +33,7 @@ public class PostController {
 
     @PostMapping(path = "post")
     public String post(Model model, Post post) {
-        post.removeTag();
+//        post.removeTag();
         postRepository.save(post);
         List<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);

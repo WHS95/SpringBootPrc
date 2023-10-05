@@ -33,6 +33,7 @@ public class PostController {
 
     @PostMapping(path = "post")
     public String post(Model model, Post post) {
+        //특수문자치환
 //        post.removeTag();
         postRepository.save(post);
         List<Post> posts = postRepository.findAll();

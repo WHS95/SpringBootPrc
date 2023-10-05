@@ -44,7 +44,21 @@ public class SpringSecurityConfiguration {
                 .roles("USER","ADMIN")
                 .build();
         return userDetails;
+//        whs
+//        $2a$10$/Est1FDUlzYZsUfg8KdYYeAbXYpOvsyXNSpfbKoMOCkpZyvU7bskO
+//        $2a$10$65tVA2eaTX04JOXagwrBZeThDJ8NUwE/TxwPl3p8QSCyUipQtKOsa
+//        alex
+//        $2a$10$FLHYgdj0YAX6mlbU2yg3uOy7thGfnTRh.E8Pjm81qFYYddahcZ46O
+//        $2a$10$jXAOyM.r9v5jQbWz1AHJcONTL8Ws3Vm0eobCrLnYVqWCfFweobIGy
+
+
+
     }
+
+    public static void main(String[] args) {
+
+    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -63,9 +77,9 @@ public class SpringSecurityConfiguration {
         //Spring Security의 기본 로그인 페이지를 사용
         http.formLogin(withDefaults());
         //CSRF(Cross-Site Request Forgery) 공격을 방지하는 Spring Security의 기본 기능을 비활성화
-//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         //X-Frame-Options 헤더를 비활성화하는 부분
-        http.headers().frameOptions().deny();
+         http.headers().frameOptions().deny();
         return http.build();
     }
 

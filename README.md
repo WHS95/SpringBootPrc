@@ -265,3 +265,19 @@ public class TestController {
        public PasswordEncoder passwordEncoder() {
            return new BCryptPasswordEncoder();
        }
+
+
+## 📕Spring JPA
+      
+      <!-- Spring Boot Starter for Data JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+
+
+#JPA를 통해 데이터 베이스에 테이블이 먼저 생기고 난후에   
+data.sql파일이 실행될수있게 해주는 명령어
+                  
+      spring.jpa.defer-datasource-initialization=true

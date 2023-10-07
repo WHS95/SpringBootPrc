@@ -41,7 +41,7 @@ public class SpringSecurityConfiguration {
                 .passwordEncoder(passwordEncoder)
                 .username(username)
                 .password(password)
-                .roles("USER","ADMIN")
+                .roles("USER", "ADMIN")
                 .build();
         return userDetails;
 //        whs
@@ -50,7 +50,6 @@ public class SpringSecurityConfiguration {
 //        alex
 //        $2a$10$FLHYgdj0YAX6mlbU2yg3uOy7thGfnTRh.E8Pjm81qFYYddahcZ46O
 //        $2a$10$jXAOyM.r9v5jQbWz1AHJcONTL8Ws3Vm0eobCrLnYVqWCfFweobIGy
-
 
 
     }
@@ -66,8 +65,7 @@ public class SpringSecurityConfiguration {
     }
 
 
-
-//    Spring Security 사용하여 애플리케이션의 인증 및 권한 부여, 기본적인 보안 설정을 정의
+    //    Spring Security 사용하여 애플리케이션의 인증 및 권한 부여, 기본적인 보안 설정을 정의
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //로그인한 사용자만이 애플리케이션의 모든 URL에 접근
@@ -76,25 +74,13 @@ public class SpringSecurityConfiguration {
         );
         //Spring Security의 기본 로그인 페이지를 사용
         http.formLogin(withDefaults());
+        //CSRF token 발급(api의 역할로만 활동할 떄)
+        //http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         //CSRF(Cross-Site Request Forgery) 공격을 방지하는 Spring Security의 기본 기능을 비활성화
-        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        http.csrf().disable();
         //X-Frame-Options 헤더를 비활성화하는 부분
-         http.headers().frameOptions().deny();
+        http.headers().frameOptions().disable();
         return http.build();
     }
-
-    //value="mgHT211U3RIkpWA7McOZJO4HNL_uRaGd9y2eyAAewzcJMXw7-TLh6z5jviUJwVMMA-6tHI8_GYeNfJOwwhmnqTAmpwY_Ah4C"
-
-
-
-//        @Bean
-//        protected void configure(HttpSecurity http) throws Exception {
-//            http
-//                    .headers()
-//                    .xssProtection()
-//                    .and()
-//                    .contentSecurityPolicy("script-src 'self'");
-//        }
-
 
 }

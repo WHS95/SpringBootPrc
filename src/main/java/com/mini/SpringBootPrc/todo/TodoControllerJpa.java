@@ -40,7 +40,8 @@ public class TodoControllerJpa {
     @RequestMapping(value="add-todo", method = RequestMethod.GET)
     public String showNewTodoPage(ModelMap model) {
         String username = getLoggedInUsername(model);
-        Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
+        Todo todo =
+                new Todo(0, username, "", LocalDate.now().plusYears(1), false);
         model.put("todo", todo);
         return "todo";
     }
@@ -53,8 +54,10 @@ public class TodoControllerJpa {
         }
 
         String username = getLoggedInUsername(model);
-        todoService.addTodo(username, todo.getDescription(),
-                todo.getTargetDate(), false);
+        todo.setUsername(username);
+        todoRepository.save(todo);
+//        todoService.addTodo(username, todo.getDescription(),
+//                todo.getTargetDate(), false);
         return "redirect:to-do-list";
     }
 
@@ -62,14 +65,16 @@ public class TodoControllerJpa {
     //@RequestMapping(value="add-todo", method = RequestMethod.POST) 어떤 요청으로 받을지 설정을 하지 않으면 모든것에 대해 받는다.
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
-        todoService.deleteById(id);
+//        todoService.deleteById(id);
+        todoRepository.deleteById(id);
         return "redirect:to-do-list";
 
     }
 
     @RequestMapping(value="update-todo", method = RequestMethod.GET)
     public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
-        Todo todo = todoService.findById(id);
+//        Todo todo = todoService.findById(id);
+        Todo todo = todoRepository.findById(id).get();
         model.addAttribute("todo", todo);
         return "todo";
     }
@@ -84,7 +89,8 @@ public class TodoControllerJpa {
 
         String username = getLoggedInUsername(model);
         todo.setUsername(username);
-        todoService.updateTodo(todo);
+//        todoService.updateTodo(todo);
+        todoRepository.save(todo);
 
         return "redirect:to-do-list";
     }
